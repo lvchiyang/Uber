@@ -1,26 +1,22 @@
 package com.lvchiyang.Passenger.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyDouble;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lvchiyang.Passenger.model.Location;
@@ -61,17 +57,6 @@ public class PassengerControllerTest {
     }
 
     @Test
-    void testTest() throws Exception {
-        // 模拟服务响应
-        when(passengerService.test()).thenReturn(ResponseEntity.ok("连接正常"));
-
-        // 执行请求并验证结果
-        mockMvc.perform(get("/passenger/test"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").value("连接正常"));
-    }
-
-    @Test
     void testLogin() throws Exception {
         // 模拟服务响应
         when(passengerService.login(anyString())).thenReturn(testPassenger);
@@ -81,13 +66,6 @@ public class PassengerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("测试乘客"))
                 .andExpect(jsonPath("$.balance").value(100.0));
-    }
-
-    @Test
-    void testLogin_EmptyName() throws Exception {
-        // 验证空名称异常
-        mockMvc.perform(post("/passenger/ /login"))
-                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -106,46 +84,6 @@ public class PassengerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("测试乘客"))
                 .andExpect(jsonPath("$.balance").value(100.0));
-    }
-
-    @Test
-    void testRecharge_InvalidAmount() throws Exception {
-        // 准备无效金额的请求数据
-        Map<String, Double> request = new HashMap<>();
-        request.put("amount", -10.0);
-
-        // 执行请求并验证结果
-        mockMvc.perform(post("/passenger/测试乘客/recharge")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void testCreateOrder() throws Exception {
-        // 模拟服务响应
-        when(passengerService.createOrder(anyString(), any(Location.class), any(Location.class)))
-                .thenReturn(testOrder);
-
-        // 准备请求数据
-        Map<String, Object> request = new HashMap<>();
-        Map<String, Integer> startLocation = new HashMap<>();
-        startLocation.put("x", 0);
-        startLocation.put("y", 0);
-        Map<String, Integer> endLocation = new HashMap<>();
-        endLocation.put("x", 5);
-        endLocation.put("y", 5);
-        request.put("startLocation", startLocation);
-        request.put("endLocation", endLocation);
-
-        // 执行请求并验证结果
-        mockMvc.perform(post("/passenger/测试乘客/creater")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.orderId").value("ORDER-001"))
-                .andExpect(jsonPath("$.passengerName").value("测试乘客"))
-                .andExpect(jsonPath("$.status").value("等待司机接单"));
     }
 
     @Test

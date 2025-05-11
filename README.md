@@ -6,17 +6,15 @@
 
 ## 演示视频
 
-[![Uber打车平台系统演示](https://i2.hdslb.com/bfs/archive/12345678.jpg)](https://www.bilibili.com/video/your-video-id "Uber打车平台系统演示")
-
-点击上方图片观看完整演示视频（请将链接替换为实际上传的B站视频链接）
+[点击这里查看演示视频](./resources/demo.mp4)
 
 ## 系统架构
 
 系统由以下几个主要组件构成：
 
 1. **平台服务(Platform)**：核心服务，负责订单管理、司机派遣、用户账户管理等业务逻辑。
-2. **乘客服务(Passenger)**：为乘客提供接口，包括登录、下单、支付等功能。
-3. **司机服务(Driver)**：为司机提供接口，包括登录、接单、导航等功能。
+2. **乘客服务(Passenger)**：为乘客提供接口，包括登录、发起订单、充值等功能。
+3. **司机服务(Driver)**：为司机提供接口，包括登录、接单等功能。
 
 ## 技术栈
 
@@ -26,30 +24,34 @@
 - **数据库**：H2 (内存数据库)
 - **前端**：HTML, CSS, JavaScript
 - **实时通信**：WebSocket
-- **测试**：JUnit 5, Mockito
+- **测试**：JUnit 5
 
 ## 功能特性
 
 ### 平台服务功能
-
+- 实时位置跟踪
+  ![平台实时监控](./resources/平台实时监控.png)
 - 用户(乘客/司机)账户管理
-- 订单创建与管理
+  ![平台查看所有账户](./resources/平台查看所有账户.png)
+- 历史订单管理
+  ![订单历史记录](./resources/订单历史记录.png)
 - 司机派遣算法
-- 实时位置追踪
 - 账单生成与结算
 
 ### 乘客服务功能
-
 - 乘客账号登录
-- 账户充值
-- 创建打车订单
-- 实时追踪司机位置
-- 订单状态更新通知
+- 创建打车订单与账户充值
+  ![平台查询余额是否满足订单要求](./resources/平台查询余额是否满足订单要求.png)
+  ![等待司机上线接单](./resources/等待司机上线接单.png)
+- 订单状态实时更新
+- 实时显示司机位置
+  ![平台向乘客端实时推送司机位置](./resources/平台向乘客端实时推送司机位置.png)
 
 ### 司机服务功能
 
 - 司机账号登录
 - 接收订单分配
+  ![司机接单](./resources/司机接单.png)
 - 实时位置更新
 - 订单状态更新
 - 订单取消通知
@@ -84,6 +86,11 @@
    - 导航到乘客位置和目的地
    - 订单完成和收入查看
 
+访问前端界面：
+   - 乘客应用界面：http://localhost:8081
+   - 司机应用界面：http://localhost:8082
+   - 平台管理界面：http://localhost:8083
+
 ## 运行说明
 
 ### 前置条件
@@ -102,65 +109,6 @@
    - 自动打开三个前端界面
    - 在logs目录下保存所有服务的日志
 
-### 手动启动
-
-如果需要手动启动服务，请按照以下步骤操作：
-
-1. 克隆代码库：
-   ```
-   git clone <repository-url>
-   ```
-
-2. 编译各服务：
-   ```
-   cd eureka-server
-   ./gradlew build
-   cd ..
-
-   cd api-gateway
-   ./gradlew build
-   cd ..
-    
-   cd platform
-   ./gradlew build
-   cd ..
-   
-   cd Driver
-   ./gradlew build
-   cd ..
-   
-   cd Passenger
-   ./gradlew build
-   cd ..
-   ```
-
-3. 按顺序启动各服务：
-   ```
-   cd eureka-server
-   ./gradlew bootRun
-   cd ..
-
-   cd api-gateway
-   ./gradlew bootRun
-   cd ..
-
-   cd platform
-   ./gradlew bootRun
-   cd ..
-   
-   cd Driver
-   ./gradlew bootRun
-   cd ..
-   
-   cd Passenger
-   ./gradlew bootRun
-   cd ..
-   ```
-
-4. 访问前端界面：
-   - 乘客应用界面：http://localhost:8081
-   - 司机应用界面：http://localhost:8082
-   - 平台管理界面：http://localhost:8083
 
 ## 单元测试
 
@@ -171,68 +119,6 @@
 - 模型验证测试
 - WebSocket消息测试
 
-### 测试用例概览
-
-#### 平台服务测试
-
-1. **RideService测试**
-   - 测试订单创建
-   - 测试司机派遣算法
-   - 测试订单状态更新
-   - 测试订单取消逻辑
-
-2. **PassengerService测试**
-   - 测试乘客登录/注册
-   - 测试账户充值
-   - 测试余额验证
-
-3. **DriverService测试**
-   - 测试司机登录/注册
-   - 测试位置更新
-   - 测试司机状态变更
-
-#### 乘客服务测试
-
-1. **PassengerController测试**
-   - 测试API端点响应
-   - 测试参数验证
-   - 测试异常处理
-
-2. **WebSocket消息测试**
-   - 测试司机位置消息
-   - 测试订单状态更新消息
-
-#### 司机服务测试
-
-1. **DriverController测试**
-   - 测试API端点响应
-   - 测试订单接收逻辑
-   - 测试订单取消逻辑
-
-2. **位置更新测试**
-   - 测试随机移动逻辑
-   - 测试目标定向移动逻辑
-
-### 运行测试
-
-要运行所有测试，执行以下命令：
-
-```
-./gradlew test
-```
-
-要运行特定服务的测试：
-
-```
-cd platform
-./gradlew test
-
-cd ../Driver
-./gradlew test
-
-cd ../Passenger
-./gradlew test
-```
 
 ## 项目特点
 

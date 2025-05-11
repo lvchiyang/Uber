@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 定时刷新数据
     fetchAllData();
-    setInterval(fetchAllData, 5000);
+    setInterval(fetchAllData, 2000);
     setInterval(updateCurrentTime, 1000);
     
     // 初始化搜索和筛选功能
