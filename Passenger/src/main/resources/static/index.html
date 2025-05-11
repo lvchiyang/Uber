@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优步乘客端</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #driverLocation {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <!-- 添加WebSocket客户端库 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>优步乘客端</h1>
+            <div class="info-bar">
+                <div class="time" id="current-time">加载中...</div>
+                <div class="status">状态: <span id="passenger-status">离线</span></div>
+                <div class="connection">
+                    <button id="check-connection-btn" class="connection-btn">检查连接</button>
+                    <span id="connection-status"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="map-container">
+                <div class="map" id="map-grid">
+                    <!-- 用Canvas替换div网格 -->
+                    <canvas id="map-canvas" width="400" height="400"></canvas> <!-- 缩小地图尺寸 -->
+                </div>
+                <div class="map-controls">
+                    <div class="control-group">
+                        <button id="select-start-btn" class="control-btn">选择起点</button>
+                        <span id="start-location">未选择</span>
+                    </div>
+                    <div class="control-group">
+                        <button id="select-end-btn" class="control-btn">选择终点</button>
+                        <span id="end-location">未选择</span>
+                    </div>
+                    <button id="create-order-btn" class="control-btn primary" disabled>创建订单</button>
+                </div>
+            </div>
+            
+            <div class="side-panel">
+                <div class="passenger-info panel">
+                    <h2>乘客信息</h2>
+                    <div class="info-content">
+                        <p>姓名: <span id="passenger-name">未登录</span></p>
+                        <p>账户余额: <span id="balance-display">0.00</span> 元</p>
+                        <p>已完成订单: <span id="completed-orders">0</span> 单</p>
+                        <p>总消费: <span id="total-spending">0.00</span> 元</p>
+                    </div>
+                </div>
+                
+                <div class="login panel" id="login-panel">
+                    <h2>乘客登录</h2>
+                    <div class="form-group">
+                        <input type="text" id="name-input" placeholder="请输入姓名">
+                        <button id="login-btn">登录</button>
+                    </div>
+                </div>
+                
+                <div class="recharge panel hidden" id="recharge-panel">
+                    <h2>账户充值</h2>
+                    <div class="form-group">
+                        <input type="number" id="amount-input" placeholder="请输入充值金额" min="1" step="1">
+                        <button id="recharge-btn">立即充值</button>
+                    </div>
+                </div>
+                
+                <div class="order-info panel hidden" id="order-panel">
+                    <h2>当前订单</h2>
+                    <div class="info-content">
+                        <p>订单ID: <span id="order-id">无</span></p>
+                        <p>起点: <span id="order-start">无</span></p>
+                        <p>终点: <span id="order-end">无</span></p>
+                        <p>价格: <span id="order-price">0.00</span> </p>
+                        <p>订单状态: <span id="order-status">创建中</span></p>
+                    </div>
+                </div>
+                
+                <div class="panel" id="status-panel">
+                    <h2>状态消息</h2>
+                    <div class="status-messages" id="status-messages">
+                        <!-- 状态消息将在这里显示 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="driverLocation" style="display: none;">
+        <h3>司机位置</h3>
+        <p>X坐标: <span id="driverX">-</span></p>
+        <p>Y坐标: <span id="driverY">-</span></p>
+        <p>描述: <span id="driverDesc">-</span></p>
+    </div>
+    
+    <script src="js/passenger.js"></script>
+</body>
+</html>

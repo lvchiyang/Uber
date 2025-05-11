@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优步平台管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>优步平台管理系统</h1>
+            <div class="info-bar">
+                <div class="time" id="current-time">加载中...</div>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="map-view">地图视图</button>
+                    <button class="tab-btn" data-tab="accounts-view">账户管理</button>
+                    <button class="tab-btn" data-tab="orders-view">订单历史</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- 地图视图 -->
+            <div class="tab-content active" id="map-view">
+                <div class="map-view-container">
+                    <!-- 左侧地图区域 -->
+                    <div class="map-section">
+                        <h2>实时地图</h2>
+                        <div class="map" id="map-grid">
+                            <canvas id="map-canvas" width="380" height="380"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧信息区域 -->
+                    <div class="info-section">
+                        <div class="active-drivers-section">
+                            <h2>在线司机 (<span id="driver-count">0</span>)</h2>
+                            <table class="driver-table">
+                                <thead>
+                                    <tr>
+                                        <th>司机名称</th>
+                                        <th>位置坐标</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="driver-list">
+                                    <tr>
+                                        <td colspan="3" class="no-data">暂无在线司机</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="active-orders-section">
+                            <h2>进行中的订单 (<span id="order-count">0</span>)</h2>
+                            <table class="order-table">
+                                <thead>
+                                    <tr>
+                                        <th>订单号</th>
+                                        <th>乘客</th>
+                                        <th>司机</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="active-order-list">
+                                    <tr>
+                                        <td colspan="5" class="no-data">暂无进行中的订单</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 账户管理视图 -->
+            <div class="tab-content" id="accounts-view">
+                <div class="accounts-section">
+                    <h2>乘客账户</h2>
+                    <div class="search-bar">
+                        <input type="text" id="passenger-search" placeholder="搜索乘客名称或ID">
+                        <button id="passenger-search-btn">搜索</button>
+                    </div>
+                    <div class="account-table-wrapper">
+                        <table class="account-table" id="passenger-table">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>余额</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 乘客数据将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="accounts-section">
+                    <h2>司机账户</h2>
+                    <div class="search-bar">
+                        <input type="text" id="driver-search" placeholder="搜索司机名称或ID">
+                        <button id="driver-search-btn">搜索</button>
+                    </div>
+                    <div class="account-table-wrapper">
+                        <table class="account-table" id="driver-table">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>状态</th>
+                                    <th>收入</th>
+                                    <th>完成订单数</th>
+                                    <th>当前位置</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 司机数据将通过JS动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 订单历史视图 -->
+            <div id="orders-view" class="tab-content">
+                <div class="control-panel">
+                    <div class="search-box">
+                        <input type="text" id="order-search" placeholder="搜索订单...">
+                    </div>
+                    <div class="delete-box">
+                        <input type="text" id="order-delete" placeholder="输入订单ID...">
+                        <button onclick="deleteOrder()">删除订单</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>订单ID</th>
+                                <th>乘客</th>
+                                <th>司机</th>
+                                <th>起点</th>
+                                <th>终点</th>
+                                <th>金额</th>
+                                <th>状态</th>
+                                <th>创建时间</th>
+                                <th>完成时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-history">
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <button id="prev-page" onclick="prevPage()">上一页</button>
+                        <span id="page-info">第 1 页，共 1 页</span>
+                        <button id="next-page" onclick="nextPage()">下一页</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/platform.js"></script>
+</body>
+</html>

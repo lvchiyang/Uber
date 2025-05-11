@@ -1,0 +1,201 @@
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f0efeb; /* 莫兰迪背景色 */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #c1e0c6; /* 莫兰迪头部背景色 */
+    color: #333;
+    padding: 15px;
+    border-radius: 5px 5px 0 0;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.main-content {
+    display: flex;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.map-container {
+    flex: 6;
+    background-color: #f0efeb; /* 莫兰迪侧边栏背景色 */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.map {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #e8e6e3; /* 莫兰迪地图背景色 */
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.side-panel {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel {
+    background-color: #f0efeb; /* 莫兰迪面板背景色 */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+}
+
+.panel h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid #e8e6e3; /* 莫兰迪分隔线颜色 */
+    padding-bottom: 10px;
+}
+
+.info-content p {
+    margin: 5px 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #5c963d; /* 莫兰迪按钮背景色 */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1c7695; /* 莫兰迪按钮悬停背景色 */
+}
+
+button:disabled {
+    background-color: #d3d3d3; /* 莫兰迪按钮禁用背景色 */
+    cursor: not-allowed;
+}
+
+.control-btn.primary {
+    background-color: #4a7451; /* 莫兰迪主按钮背景色 */
+}
+
+.control-btn.primary:hover {
+    background-color: #639363; /* 莫兰迪主按钮悬停背景色 */
+}
+
+.hidden {
+    display: none;
+}
+
+.status-messages {
+    max-height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.status-message {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.status-message.info {
+    background-color: #d1e0dd; /* 莫兰迪信息背景色 */
+    color: #2c5f4f;
+}
+
+.status-message.success {
+    background-color: #d4e6c8; /* 莫兰迪成功背景色 */
+    color: #3c763d;
+}
+
+.status-message.error {
+    background-color: #e8d1d1; /* 莫兰迪错误背景色 */
+    color: #a94442;
+}
+
+.status-message.warning {
+    background-color: #f5e6ca; /* 莫兰迪警告背景色 */
+    color: #8a6d3b;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.payment-methods label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.connection-btn {
+    background-color: #b0b0b0; /* 莫兰迪连接按钮背景色 */
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.connected {
+    color: #5cb85c; /* 莫兰迪连接成功颜色 */
+}
+
+.disconnected {
+    color: #d9534f; /* 莫兰迪连接失败颜色 */
+}

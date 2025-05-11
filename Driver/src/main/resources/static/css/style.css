@@ -1,0 +1,391 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    background-color: #c1e0c6;
+    color: rgb(157, 157, 157);
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.connection-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.connection-btn:hover {
+    background-color: #0056b3;
+}
+
+.connection-btn:active {
+    background-color: #004085;
+}
+
+/* 主内容区样式 */
+.main-content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* 地图样式 */
+.map-container {
+    flex: 3;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.map {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #dee2e6;
+    position: relative;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.route-line {
+    stroke: #007bff;
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+    fill: none;
+}
+  
+.location-marker {
+    fill: #ff4500;
+}
+
+.destination-marker {
+    fill: #008000;
+}
+
+.passenger-marker {
+    fill: #FFD700;
+}
+
+canvas#map-canvas {
+    display: block;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.map-controls {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: bold;
+}
+
+.control-btn:hover {
+    background-color: #dde0e3;
+}
+
+.control-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.control-btn.primary {
+    background-color: #28a745;
+    color: white;
+}
+
+.control-btn.primary:hover {
+    background-color: #218838;
+}
+
+.control-btn.danger {
+    background-color: #99545b;
+    color: white;
+}
+
+.control-btn.danger:hover {
+    background-color: #8a5358;
+}
+
+/* 侧边面板样式 */
+.side-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.panel h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-content p {
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+
+/* 登录面板样式优化 */
+.login.panel {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.login.panel h2 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #5c963d;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #5c963d;
+    box-shadow: 0 0 0 2px rgba(92, 150, 61, 0.2);
+}
+
+.form-group button {
+    background-color: #5c963d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+    background-color: #1c7695;
+}
+
+.form-group button:active {
+    background-color: #155a73;
+}
+
+/* 订单信息面板 */
+.order-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* 导航面板 */
+.navigation-panel {
+    background-color: #f8f9fa;
+}
+
+/* 状态消息面板 */
+.status-messages {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* 状态消息样式优化 */
+.status-message {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-message .time {
+    color: #666;
+    font-size: 0.85rem;
+    min-width: 70px;
+}
+
+.status-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.status-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.status-message.info {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border-left: 4px solid #6c757d;
+}
+
+/* 辅助类 */
+.hidden {
+    display: none !important;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.success {
+    color: #28a745;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .map {
+        height: 450px;
+    }
+    
+    canvas#map-canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* 连接状态样式优化 */
+.connection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#connection-status {
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+#connection-status.connected {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+#connection-status.disconnected {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+/* 添加地图图例的样式 */
+.map-legend {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.map-legend h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 8px;
+} 

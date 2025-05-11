@@ -1,0 +1,470 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    background-color: #1a73e8;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.time, .online-count {
+    padding: 5px 10px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.tab-buttons {
+    display: flex;
+}
+
+.tab-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.tab-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.tab-btn.active {
+    background-color: rgba(255,255,255,0.3);
+    font-weight: bold;
+}
+
+/* 主内容区样式 */
+.main-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 80vh;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 地图视图样式 */
+.map-section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.map {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 1px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    height: 400px;
+}
+
+.map-cell {
+    background-color: #f9f9f9;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.map-cell:hover {
+    background-color: #eee;
+}
+
+.map-legend {
+    display: flex;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.legend-color.driver {
+    background-color: #1a73e8;
+}
+
+.legend-color.passenger {
+    background-color: #fbbc04;
+}
+
+.legend-color.start {
+    background-color: #34a853;
+}
+
+.legend-color.end {
+    background-color: #ea4335;
+}
+
+/* 司机和订单列表样式 */
+.active-drivers-section, .active-orders-section {
+    margin-bottom: 20px;
+}
+
+.driver-list, .order-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.driver-card, .order-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.driver-card h3, .order-card h3 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #1a73e8;
+}
+
+.driver-info, .order-info {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.driver-info p, .order-info p {
+    margin-bottom: 5px;
+}
+
+.driver-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.status-available {
+    background-color: #e6f4ea;
+    color: #34a853;
+}
+
+.status-busy {
+    background-color: #fce8e6;
+    color: #ea4335;
+}
+
+/* 账户管理样式 */
+.accounts-section {
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+}
+
+.search-bar select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-left: none;
+    font-size: 0.9rem;
+    background-color: white;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.account-table-wrapper, .order-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.account-table, .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.account-table th, .order-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.account-table td, .order-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.account-table tr:nth-child(even), .order-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.account-table tr:hover, .order-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 订单历史样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin: 0 10px;
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+#page-info {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* 地图元素样式 */
+.entity {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.entity.driver {
+    background-color: #1a73e8;
+}
+
+.entity.passenger {
+    background-color: #fbbc04;
+}
+
+.entity.start {
+    background-color: #34a853;
+}
+
+.entity.end {
+    background-color: #ea4335;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .driver-list, .order-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tab-buttons {
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        margin-bottom: 5px;
+    }
+}
+
+        /* 新增局部样式覆盖 */
+        body {
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            background-color: #fff;
+            padding: 20px;
+        }
+        
+        .map-view-container {
+            display: flex;
+            gap: 20px;
+            background-color: #fff;
+        }
+        
+        .map-section {
+            flex: 0 0 400px; /* 固定宽度 */
+            max-width: 400px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: #fff;
+        }
+        
+        .map {
+            width: 100%;
+            aspect-ratio: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .active-drivers-section, .active-orders-section {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        
+        .driver-table, .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .driver-table th, .order-table th {
+            background-color: #f5f5f5;
+            text-align: left;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .driver-table td, .order-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .driver-table tr:nth-child(even), .order-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 15px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        h2 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .header {
+            background-color: #1a73e8;
+        }
+        
+        .driver-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        
+        .status-available {
+            background-color: #e6f4ea;
+            color: #34a853;
+        }
+        
+        .status-busy {
+            background-color: #fce8e6;
+            color: #ea4335;
+        }

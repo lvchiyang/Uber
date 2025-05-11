@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: passenger-service
+          uri: lb://passenger-service
+          predicates:
+            - Path=/passenger/**
+          filters:
+            - StripPrefix=0
+
+        - id: driver-service
+          uri: lb://driver-service
+          predicates:
+            - Path=/driver/**
+          filters:
+            - StripPrefix=0
+
+        - id: platform-service
+          uri: lb://platform-service
+          predicates:
+            - Path=/api/ride/**
+          filters:
+            - StripPrefix=2
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG 
